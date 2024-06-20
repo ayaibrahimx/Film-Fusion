@@ -54,7 +54,7 @@ function MyList() {
                   <CloseButton
                     handleClose={() => handleRemoveFromList(item)}
                     movie={item}
-                    className="absolute right-14 top-4 hidden"
+                    className="absolute right-14 top-4 hidden max-lg:block max-sm:block"
                   />
                 </span>
                 <div className="p-4">
