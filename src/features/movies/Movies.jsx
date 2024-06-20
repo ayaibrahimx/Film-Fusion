@@ -37,19 +37,6 @@ function Movies() {
     }
     localStorage.setItem('movies', JSON.stringify(movies));
   }, [movies]);
-  useEffect(() => {
-    const preventDefault = (e) => {
-      e.preventDefault();
-    };
-
-    document.body.addEventListener('touchmove', preventDefault, {
-      passive: false,
-    });
-
-    return () => {
-      document.body.removeEventListener('touchmove', preventDefault);
-    };
-  }, []);
 
   if (isLoading) {
     return <Spinner />;

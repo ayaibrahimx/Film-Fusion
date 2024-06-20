@@ -13,20 +13,6 @@ const TvShows = () => {
   const { tvShows, error, totalPages, isLoading } = useTvShows();
   const [showFilterAndSort, setShowFilterAndSort] = useState(false);
 
-  useEffect(() => {
-    const preventDefault = (e) => {
-      e.preventDefault();
-    };
-
-    document.body.addEventListener('touchmove', preventDefault, {
-      passive: false,
-    });
-
-    return () => {
-      document.body.removeEventListener('touchmove', preventDefault);
-    };
-  }, []);
-
   if (error) {
     return <div>Error: {error}</div>;
   }
