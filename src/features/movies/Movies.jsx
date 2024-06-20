@@ -24,6 +24,7 @@ function Movies() {
     currentPage,
     totalPages,
   } = useMovies();
+
   useEffect(() => {
     // Render the movie list based on movies state
   }, [movies]);
@@ -36,6 +37,19 @@ function Movies() {
     }
     localStorage.setItem('movies', JSON.stringify(movies));
   }, [movies]);
+  useEffect(() => {
+    const preventDefault = (e) => {
+      e.preventDefault();
+    };
+
+    document.body.addEventListener('touchmove', preventDefault, {
+      passive: false,
+    });
+
+    return () => {
+      document.body.removeEventListener('touchmove', preventDefault);
+    };
+  }, []);
 
   if (isLoading) {
     return <Spinner />;
@@ -64,7 +78,7 @@ function Movies() {
       )}
 
       <div
-        className={`mx-0   flex flex-wrap justify-center max-lg:mb-7   max-sm:mb-7 max-sm:h-dvh`}
+        className={`mx-0   flex flex-wrap justify-center   max-sm:mb-7 max-sm:h-dvh`}
       >
         <Toaster />
         {movies.length === 0 ? (
@@ -88,7 +102,7 @@ function Movies() {
                     />
                   </Link>
                 </Suspense>
-                <h1 className="absolute bottom-0 left-0 right-0 mt-2 bg-black bg-opacity-50 px-2 py-1 text-center text-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <h1 className="absolute bottom-0 left-0 right-0 mt-2 bg-black bg-opacity-50 px-2 py-1 text-center text-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100 max-lg-[1025]:opacity-100 max-md:opacity-100 max-sm:opacity-100 ">
                   {movie.title}
                 </h1>
               </div>

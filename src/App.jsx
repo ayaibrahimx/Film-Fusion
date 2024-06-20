@@ -13,7 +13,7 @@ import { FilterAndSortProvider } from './context/FilterAndSortContext';
 const router = createBrowserRouter([
   {
     element: <Applayout />,
-    errorElement: <Error />, // Changed from 'error' to 'errorElement'
+    errorElement: <Error />,
     children: [
       {
         path: '/',

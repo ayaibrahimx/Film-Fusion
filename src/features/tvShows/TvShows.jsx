@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import useTvShows from './useTvShows';
 import AddingToFavorites from '../../ui/AddingToFavorites';
 import { Toaster } from 'react-hot-toast';
@@ -12,6 +12,20 @@ import Spinner from '../../ui/Spinner';
 const TvShows = () => {
   const { tvShows, error, totalPages, isLoading } = useTvShows();
   const [showFilterAndSort, setShowFilterAndSort] = useState(false);
+
+  useEffect(() => {
+    const preventDefault = (e) => {
+      e.preventDefault();
+    };
+
+    document.body.addEventListener('touchmove', preventDefault, {
+      passive: false,
+    });
+
+    return () => {
+      document.body.removeEventListener('touchmove', preventDefault);
+    };
+  }, []);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -62,7 +76,7 @@ const TvShows = () => {
                     />
                   </Link>
                 </Suspense>
-                <h1 className="absolute bottom-0 left-0 right-0 mt-2 bg-black bg-opacity-50 px-2 py-1 text-center text-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <h1 className="absolute bottom-0 left-0 right-0 mt-2 bg-black bg-opacity-50 px-2 py-1 text-center text-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100 max-lg-[1025]:opacity-100 max-md:opacity-100 max-sm:opacity-100">
                   {show.name}
                 </h1>
               </div>
